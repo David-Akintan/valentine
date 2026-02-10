@@ -68,7 +68,7 @@ const questions = [
     title: "Future Dreams",
     text: "When you imagine our future, what makes you most excited?",
     options: [
-      "Building a life together",
+      "Building a life together💖",
       "Growing old and still making each other laugh",
       "Facing challenges as a team",
       "All the little moments in between",
