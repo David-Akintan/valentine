@@ -1,5 +1,5 @@
 // The secret code - you can change this to whatever you want
-const SECRET_CODE = "842~102323";
+const SECRET_CODE = "MYVAL";
 
 // Maximum number of attempts
 const MAX_ATTEMPTS = 5;
