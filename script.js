@@ -1,13 +1,10 @@
-// Authentication check disabled for testing
-// To enable: uncomment the code below
-/*
-window.addEventListener('load', function() {
-  const isUnlocked = sessionStorage.getItem('loveStoryUnlocked');
+// Check if user has unlocked the app
+window.addEventListener("load", function () {
+  const isUnlocked = sessionStorage.getItem("loveStoryUnlocked");
   if (!isUnlocked) {
-    window.location.href = 'index.html';
+    window.location.href = "index.html";
   }
 });
-*/
 
 const gentleMessages = [
   "Take your time, my love...",
@@ -44,7 +41,7 @@ function showLoader() {
         <div class="loader-heart">💖</div>
         <div class="loader-heart">💗</div>
       </div>
-      <p class="loader-text">Preparing your love story...</p>
+      <p class="loader-text">Preparing our love story...</p>
       <div class="loader-bar">
         <div class="loader-progress"></div>
       </div>

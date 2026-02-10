@@ -1,3 +1,12 @@
+// Check if user has unlocked the app
+window.addEventListener("load", function () {
+  const isUnlocked = sessionStorage.getItem("loveStoryUnlocked");
+  if (!isUnlocked) {
+    window.location.href = "index.html";
+    return;
+  }
+});
+
 const questions = [
   {
     id: 1,
@@ -48,7 +57,7 @@ const questions = [
     title: "Perfect Day",
     text: "Describe your perfect day with me in one sentence:",
     options: [
-      "Waking up in your arms, breakfast in bed and endless conversations",
+      "Waking up in your arms, coffee, and endless conversations",
       "Adventure, laughter, and falling asleep next to you",
       "Simple moments, deep talks, and feeling completely understood",
       "Any day where I get to love you freely",

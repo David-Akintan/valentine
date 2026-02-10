@@ -1,5 +1,5 @@
 // The secret code - you can change this to whatever you want
-const SECRET_CODE = "LOVE24";
+const SECRET_CODE = "842~102323";
 
 // Maximum number of attempts
 const MAX_ATTEMPTS = 5;
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (attemptCount >= MAX_ATTEMPTS) {
         showError(
-          `Too many attempts. The correct code is in your WhatsApp! 💌`,
+          `Too many attempts. The correct code is in the QRCode sent to you! 💌`,
         );
         lockForm();
       } else {
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show hint after 2 seconds
     setTimeout(() => {
-      errorMessage.textContent = "💡 Hint: Check your WhatsApp messages!";
+      errorMessage.textContent = "💡 Hint: Check QRCode sent to you";
       errorMessage.style.color = "#fa0561";
     }, 2000);
   }

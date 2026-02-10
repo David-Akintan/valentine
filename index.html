@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome - Our Love Story (INLINE VERSION)</title>
+    <title>Welcome - Our Love Story</title>
     <link rel="stylesheet" href="welcome.css" />
   </head>
   <body>
@@ -79,6 +79,9 @@
 
       // Wait for DOM to be ready
       document.addEventListener("DOMContentLoaded", function () {
+        // Clear any existing authentication when on welcome page
+        sessionStorage.removeItem("loveStoryUnlocked");
+
         const codeForm = document.getElementById("codeForm");
         const codeInput = document.getElementById("codeInput");
         const errorMessage = document.getElementById("errorMessage");

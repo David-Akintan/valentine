@@ -1,3 +1,12 @@
+// Check if user has unlocked the app
+window.addEventListener("load", function () {
+  const isUnlocked = sessionStorage.getItem("loveStoryUnlocked");
+  if (!isUnlocked) {
+    window.location.href = "index.html";
+    return;
+  }
+});
+
 function celebrateLove() {
   const container = document.querySelector(".container");
   const button = document.querySelector(".forever-yes");
