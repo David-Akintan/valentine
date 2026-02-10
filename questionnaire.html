@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Love Story</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="questionnaire-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="question-card" id="questionCard">
+        <div class="question-number">
+          <span id="currentQuestion">1</span> /
+          <span id="totalQuestions">8</span>
+        </div>
+
+        <div class="question-content">
+          <h2 id="questionTitle">Loading...</h2>
+          <p id="questionText">Loading question...</p>
+        </div>
+
+        <div class="answer-options" id="answerOptions">
+          <!-- Options will be dynamically generated -->
+        </div>
+
+        <div class="navigation">
+          <button
+            class="prev-button"
+            id="prevButton"
+            onclick="previousQuestion()"
+            style="display: none"
+          >
+            Previous
+          </button>
+          <button
+            class="next-button"
+            id="nextButton"
+            onclick="nextQuestion()"
+            disabled
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div class="floating-hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+      </div>
+    </div>
+
+    <script src="questionnaire.js"></script>
+  </body>
+</html>

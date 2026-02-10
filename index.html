@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome - Our Love Story (INLINE VERSION)</title>
+    <link rel="stylesheet" href="welcome.css" />
+  </head>
+  <body>
+    <div class="welcome-container">
+      <div class="animated-hearts-bg">
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+        <div class="floating-heart">❤️</div>
+      </div>
+
+      <div class="welcome-card">
+        <div class="lock-icon">
+          <div class="lock-body">
+            <div class="lock-shackle"></div>
+            <div class="lock-keyhole">🔐</div>
+          </div>
+        </div>
+
+        <h1 class="welcome-title">Something Special Awaits...</h1>
+        <p class="welcome-message">
+          A beautiful journey has been prepared just for you, Eniola 💖
+        </p>
+        <p class="code-instruction">Please enter the secret code sent to you</p>
+
+        <form id="codeForm" class="code-form">
+          <div class="code-input-container">
+            <input
+              type="text"
+              id="codeInput"
+              class="code-input"
+              placeholder="Enter your code"
+              maxlength="6"
+              autocomplete="off"
+              required
+            />
+            <div class="input-underline"></div>
+          </div>
+
+          <div class="error-message" id="errorMessage">
+            ❌ Incorrect code. Please try again.
+          </div>
+
+          <button type="submit" class="unlock-button">
+            <span class="button-text">Unlock Love Story</span>
+            <span class="button-icon">💝</span>
+          </button>
+        </form>
+
+        <div class="hint-section">
+          <p class="hint-text">💌 Password is: LOVE24</p>
+        </div>
+      </div>
+
+      <div class="sparkles">
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">✨</div>
+      </div>
+    </div>
+
+    <!-- INLINE SCRIPT TO AVOID MIME TYPE ISSUES -->
+    <script>
+      // The secret code - you can change this to whatever you want
+      const SECRET_CODE = "LOVE24";
+
+      // Maximum number of attempts
+      const MAX_ATTEMPTS = 5;
+      let attemptCount = 0;
+
+      // Wait for DOM to be ready
+      document.addEventListener("DOMContentLoaded", function () {
+        const codeForm = document.getElementById("codeForm");
+        const codeInput = document.getElementById("codeInput");
+        const errorMessage = document.getElementById("errorMessage");
+        const unlockButton = document.querySelector(".unlock-button");
+
+        // Make sure elements exist
+        if (!codeForm || !codeInput || !errorMessage || !unlockButton) {
+          console.error("Required elements not found!");
+          return;
+        }
+
+        // Initialize form submission
+        codeForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          validateCode();
+        });
+
+        // Auto-uppercase input
+        codeInput.addEventListener("input", function (e) {
+          this.value = this.value.toUpperCase();
+
+          // Remove error state when user starts typing
+          if (errorMessage.classList.contains("show")) {
+            errorMessage.classList.remove("show");
+          }
+        });
+
+        // Add shimmer effect on focus
+        codeInput.addEventListener("focus", function () {
+          const underline =
+            this.parentElement.querySelector(".input-underline");
+          if (underline) underline.style.width = "100%";
+        });
+
+        codeInput.addEventListener("blur", function () {
+          if (!this.value) {
+            const underline =
+              this.parentElement.querySelector(".input-underline");
+            if (underline) underline.style.width = "0";
+          }
+        });
+
+        // Add enter key support
+        codeInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            validateCode();
+          }
+        });
+
+        // Auto-focus on input when page loads
+        setTimeout(() => {
+          codeInput.focus();
+        }, 500);
+
+        function validateCode() {
+          const enteredCode = codeInput.value.trim().toUpperCase();
+
+          console.log("Entered code:", enteredCode);
+          console.log("Expected code:", SECRET_CODE);
+          console.log("Match:", enteredCode === SECRET_CODE.toUpperCase());
+
+          // Check if input is empty
+          if (!enteredCode) {
+            showError("Please enter a code");
+            shakeInput();
+            return;
+          }
+
+          // Check if code matches (case-insensitive comparison)
+          if (enteredCode === SECRET_CODE.toUpperCase()) {
+            // Success!
+            unlockAccess();
+          } else {
+            // Incorrect code
+            attemptCount++;
+
+            if (attemptCount >= MAX_ATTEMPTS) {
+              showError(`Too many attempts. Try LOVE24`);
+              lockForm();
+            } else {
+              const remainingAttempts = MAX_ATTEMPTS - attemptCount;
+              showError(
+                `Incorrect code. ${remainingAttempts} ${remainingAttempts === 1 ? "attempt" : "attempts"} remaining.`,
+              );
+              shakeInput();
+            }
+
+            // Clear input for next attempt
+            codeInput.value = "";
+            codeInput.focus();
+          }
+        }
+
+        function showError(message) {
+          errorMessage.textContent = `❌ ${message}`;
+          errorMessage.classList.add("show");
+
+          // Add shake animation to the card
+          const card = document.querySelector(".welcome-card");
+          if (card) {
+            card.style.animation = "shake 0.5s ease";
+            setTimeout(() => {
+              card.style.animation = "cardEntrance 1s ease-out";
+            }, 500);
+          }
+        }
+
+        function shakeInput() {
+          codeInput.style.animation = "shake 0.5s ease";
+          setTimeout(() => {
+            codeInput.style.animation = "";
+          }, 500);
+        }
+
+        function lockForm() {
+          codeInput.disabled = true;
+          unlockButton.disabled = true;
+          unlockButton.style.opacity = "0.6";
+          unlockButton.style.cursor = "not-allowed";
+
+          // Show hint after 2 seconds
+          setTimeout(() => {
+            errorMessage.textContent = "💡 The code is LOVE24!";
+            errorMessage.style.color = "#fa0561";
+          }, 2000);
+        }
+
+        function unlockAccess() {
+          console.log("Unlocking access...");
+
+          // Hide error if showing
+          errorMessage.classList.remove("show");
+
+          // Success animation
+          const welcomeCard = document.querySelector(".welcome-card");
+          if (welcomeCard) {
+            welcomeCard.classList.add("unlock-success");
+          }
+
+          // Change button state
+          unlockButton.innerHTML = `
+            <span class="button-text">Unlocking...</span>
+            <span class="button-icon">💖</span>
+          `;
+          unlockButton.style.background =
+            "linear-gradient(135deg, #28a745, #20c997)";
+
+          // Create success confetti
+          createSuccessConfetti();
+
+          // Unlock animation for lock icon
+          const lockBody = document.querySelector(".lock-body");
+          if (lockBody) {
+            lockBody.style.animation = "unlockRotate 0.6s ease-out";
+          }
+
+          // Store authentication in sessionStorage
+          sessionStorage.setItem("loveStoryUnlocked", "true");
+          console.log(
+            "Session storage set:",
+            sessionStorage.getItem("loveStoryUnlocked"),
+          );
+
+          // Redirect after animation
+          setTimeout(() => {
+            console.log("Redirecting to main.html");
+            window.location.href = "main.html";
+          }, 1500);
+        }
+
+        function createSuccessConfetti() {
+          const colors = [
+            "#fa0561",
+            "#ff6b9d",
+            "#ffb3c1",
+            "#ffd1e8",
+            "#ffeef8",
+          ];
+          const emojis = ["❤️", "💕", "💖", "💗", "💝", "✨", "🌟"];
+
+          for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement("div");
+            const isEmoji = Math.random() > 0.5;
+
+            if (isEmoji) {
+              confetti.textContent =
+                emojis[Math.floor(Math.random() * emojis.length)];
+              confetti.style.fontSize = Math.random() * 20 + 15 + "px";
+            } else {
+              confetti.style.width = Math.random() * 10 + 5 + "px";
+              confetti.style.height = confetti.style.width;
+              confetti.style.backgroundColor =
+                colors[Math.floor(Math.random() * colors.length)];
+              confetti.style.borderRadius = "50%";
+            }
+
+            confetti.style.position = "fixed";
+            confetti.style.left = Math.random() * 100 + "%";
+            confetti.style.top = "50%";
+            confetti.style.pointerEvents = "none";
+            confetti.style.zIndex = "9999";
+            confetti.style.animation = `confettiBurst ${Math.random() * 2 + 1}s ease-out forwards`;
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+              confetti.remove();
+            }, 3000);
+          }
+        }
+      });
+
+      // Add confetti animation
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes confettiBurst {
+          0% {
+            transform: translate(0, 0) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(
+              ${Math.random() * 400 - 200}px,
+              ${Math.random() * 400 - 200}px
+            ) rotate(${Math.random() * 720}deg);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes unlockRotate {
+          0% { transform: rotate(0deg); }
+          50% { transform: rotate(10deg); }
+          100% { transform: rotate(0deg); }
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
