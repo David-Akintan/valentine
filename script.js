@@ -1,4 +1,3 @@
-// Check if user has unlocked the app
 window.addEventListener("load", function () {
   const isUnlocked = sessionStorage.getItem("loveStoryUnlocked");
   if (!isUnlocked) {

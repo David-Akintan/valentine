@@ -1,8 +1,6 @@
-// The secret code - you can change this to whatever you want
 const SECRET_CODE = "MYVAL";
 
-// Maximum number of attempts
-const MAX_ATTEMPTS = 5;
+const MAX_ATTEMPTS = 6;
 let attemptCount = 0;
 
 // Wait for DOM to be ready
