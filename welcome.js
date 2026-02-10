@@ -1,4 +1,4 @@
-const SECRET_CODE = "MYVAL";
+const SECRET_CODE = "842~102323";
 
 const MAX_ATTEMPTS = 6;
 let attemptCount = 0;
